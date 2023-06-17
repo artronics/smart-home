@@ -15,13 +15,7 @@ class SmartHomeApplication {
 
 	@EventListener(ApplicationReadyEvent::class)
 	fun loadBookTestData() {
-		val d = Device()
-//		d.id = UUID.randomUUID().toString()
-//		d.id = 123
-		repo.save(d)
-		val r = Device()
-		repo.save(r)
-		println("saved")
+		println("starting")
 	}
 }
 

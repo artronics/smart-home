@@ -2,13 +2,10 @@ package com.github.artronics.smarthome.smarthome
 
 import jakarta.persistence.*
 import org.springframework.data.repository.CrudRepository
-
-@Entity(name = "entity_seq")
-class EntitySequence {
-    @Id
-    var name: String? = null
-    var seq: Long? = null
-}
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 
 @Entity
 class Device {
@@ -24,4 +21,16 @@ class Device {
 
 interface DeviceRepo : CrudRepository<Device, Long> {
     fun findDeviceById(id: Long): Device
+}
+
+@RestController
+@RequestMapping(value = ["/device"])
+class DeviceController(private val deviceRepo: DeviceRepo) {
+    @PostMapping
+    fun addDevice(@RequestParam ip: String): String {
+        val d = Device()
+        deviceRepo.save(d)
+        return "Ok"
+    }
+
 }

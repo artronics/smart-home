@@ -1,0 +1,2 @@
+### Register a new Device using IP
+POST http://localhost:8080/device?ip=192.168.0.28
